@@ -1,0 +1,82 @@
+
+body {
+    background-color: #bbbbbb;
+}
+.toDoList {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 30px;
+    border: gray solid 1px;
+    box-shadow: 0 0 7px black;
+}
+.tasksList {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding-left: 20px;
+}
+.header {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+}
+#inputText {
+    width: 60%;
+}
+.delete {
+    float: right;
+    color: red;
+    padding-right: 10px;
+}
+.delete:hover {
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 20px;
+}
+.title {
+    padding-left: 10px;
+    font-size: 20px;
+}
+.tasks {
+    padding-bottom: 10px;
+}
+.task {
+    height: 20px;
+    padding: 10px;
+    width: 100%;
+}
+.task.done {
+    text-decoration: line-through;
+    background-color: darkgray;
+}
+.task:hover {
+    transition: 0.2s;
+    text-shadow: 0 0 5px black;
+}
+.btn {
+    width: 15%;
+    height: 40px;
+}
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0 3px black;
+}
+#search {
+    width: 15%;
+}
+#date {
+    width: 20%;
+}
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.selected {
+    box-shadow: 0 0 3px black;
+}
+#itemsLeft {
+    padding-right: 20px;
+}
+
