@@ -16,7 +16,10 @@ class AddTask extends React.Component {
 
         };
 
-
+        this.sortTextRef = React.createRef();
+        this.sortDateRef = React.createRef();
+        this.taskFilterRef = React.createRef();
+        this.dateRef = React.createRef();
     }
 
     createNewTask() {
@@ -38,10 +41,10 @@ class AddTask extends React.Component {
         }
     }
 
-    toDoDateChange(e) {
+    toDoDateChange() {
 
         let date;
-        let dateValue = e.currentTarget.value;
+        let dateValue = this.dateRef.current.value;
         let parseDate = Date.parse(dateValue);
         let dateFunc = new Date(parseDate);;
 
@@ -66,20 +69,16 @@ class AddTask extends React.Component {
         this.setState({toDoValue: e.currentTarget.value});
     }
 
-    handleTextSortChanged(e) {
-
-        this.props.onTextFiltered(e.currentTarget.dataset.value);
-
+    handleTextSortChanged() {
+        this.props.onTextFiltered(this.sortTextRef.current.dataset.value);
     }
 
-    handleDateSortChanged(e) {
-
-        this.props.onDateFiltered(e.currentTarget.dataset.value);
-
+    handleDateSortChanged() {
+        this.props.onDateFiltered(this.sortDateRef.current.dataset.value);
     }
 
-    handleTaskFilter(e) {
-        this.props.onFilter(e.currentTarget.dataset.value, e.currentTarget.value);
+    handleTaskFilter() {
+        this.props.onFilter(this.taskFilterRef.current.dataset.value, this.taskFilterRef.current.value);
     }
 
 
@@ -88,16 +87,19 @@ class AddTask extends React.Component {
                 <div className="header">
                     <input id="inputText" value={this.state.toDoValue}
                            onChange={this.toDoValueChange.bind(this)}/>
-                    <input type="date" id="date"
+                    <input type="date" id="date" ref={this.dateRef}
                            onChange={this.toDoDateChange.bind(this)}/>
                     <button id="addButton" className="btn"
                             onClick={this.createNewTask.bind(this)}>Add task!</button>
-                    <input type="text" className="sort" id="search" data-value="taskFilter" onInput={this.handleTaskFilter.bind(this)}/>
+                    <input type="text" className="sort" id="search" data-value="taskFilter"
+                           ref={this.taskFilterRef}
+                           onChange={this.handleTaskFilter.bind(this)}/>
                     <input type="button" value="SortText" className="btn" id="SortText" data-value="sortText"
-                           onClick={this.handleTextSortChanged.bind(this)}/>
+                           ref={this.sortTextRef} onClick={this.handleTextSortChanged.bind(this)}/>
                     <input type="button" value="SortDate" className="btn" id="SortDate" data-value="sortDate"
-                           onClick={this.handleDateSortChanged.bind(this)}/>
-                    <input type="button" value="Reset" className="btn" id="Reset" onClick={this.props.onReset}/>
+                           ref={this.sortDateRef} onClick={this.handleDateSortChanged.bind(this)}/>
+                    <input type="button" value="Reset" className="btn" id="Reset"
+                           onClick={this.props.onReset}/>
                 </div>
 
         );
